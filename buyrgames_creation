@@ -1,0 +1,38 @@
+SET SCHEMA 'buyrgames';
+
+CREATE TABLE users_table (
+	user_id SERIAL PRIMARY KEY,
+	username VARCHAR(20) NOT NULL UNIQUE,
+	password VARCHAR(20) NOT NULL,
+	email VARCHAR(20) NOT NULL UNIQUE,
+	firstname VARCHAR(20) NOT NULL,
+	lastname VARCHAR(20) NOT NULL,
+	address VARCHAR(50) NOT NULL,
+	zip VARCHAR(20) NOT NULL,
+	city VARCHAR(20) NOT NULL,
+	state VARCHAR(20) NOT NULL,
+	country VARCHAR(2) NOT NULL,
+	reward_points INTEGER NOT NULL CHECK (reward_points > 0)
+);
+
+CREATE TABLE product_table (
+	product_id SERIAL PRIMARY KEY,
+	name VARCHAR(50) NOT NULL,
+	platform VARCHAR(20) NOT NULL,
+	release_year VARCHAR(4) NOT NULL,
+	genre VARCHAR(20) NOT NULL,
+	publisher VARCHAR(20) NOT NULL,
+	developer VARCHAR(20) NOT NULL,
+	critic_score NUMERIC CHECK (0 <= critic_score AND critic_score <= 10),
+	user_rating_average NUMERIC CHECK (0 <= user_rating_average AND user_rating_average <= 10),
+	price NUMERIC CHECK (price > 0),
+	product_image_url VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE review_table (
+	review_id SERIAL PRIMARY KEY,
+	user_id INTEGER REFERENCES users_table (user_id),
+	product_id INTEGER REFERENCES product_table (product_id),
+	user_rating NUMERIC CHECK (0 <= user_rating AND user_rating <= 10),
+	review VARCHAR(1000) NOT NULL
+);
