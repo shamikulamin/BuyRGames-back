@@ -1,5 +1,6 @@
 package com.revature.buyrgames.controllers;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,20 +17,34 @@ import com.revature.buyrgames.services.GamesService;
 public class GameController {
 
 	private GamesService gs;
-	
+
 	public GameController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Autowired
 	public GameController(GamesService gs) {
 		super();
 		this.gs = gs;
 	}
-	
-	@GetMapping("{genre}")
-	public List<Game> findByGenre(@PathVariable String genre){
+
+	@GetMapping("/genre/{genre}")
+	public List<Game> findByGenre(@PathVariable String genre) {
 		return gs.findByGenre(genre);
+	}
+
+	@GetMapping("/platform/{platform}")
+	public List<Game> findRandomByPlatform(@PathVariable String platform) {
+		List<Game> fullList = gs.findRandomByPlatform(platform);
+
+		Collections.shuffle(fullList);
+		
+		for (int i = fullList.size() - 1; i >2; i--) {
+            fullList.remove(i);
+        }
+		
+		return fullList;
+
 	}
 }

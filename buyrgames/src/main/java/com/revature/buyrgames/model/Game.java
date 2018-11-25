@@ -18,6 +18,7 @@ public class Game {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "product_id")
 	private int id;
+	private String name;
 	private String platform;
 	private int release_year;
 	private String genre;
@@ -34,10 +35,11 @@ public class Game {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Game(int id, String platform, int release_year, String genre, String publisher, String developer,
+	public Game(int id, String name, String platform, int release_year, String genre, String publisher, String developer,
 			int critic_score, double user_rating_average, double price, String product_image_url, String esrb_rating) {
 		super();
 		this.id = id;
+		this.name = name;
 		this.platform = platform;
 		this.release_year = release_year;
 		this.genre = genre;
@@ -48,6 +50,14 @@ public class Game {
 		this.price = price;
 		this.product_image_url = product_image_url;
 		this.esrb_rating = esrb_rating;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getId() {

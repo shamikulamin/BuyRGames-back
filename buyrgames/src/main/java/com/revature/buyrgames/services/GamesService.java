@@ -18,4 +18,7 @@ public class GamesService {
 		return gameRepo.findByGenre(genre);
 	}
 	
+	public List<Game> findRandomByPlatform(String platform){
+		return gameRepo.findRandomByPlatform(platform);
+	}
 }
