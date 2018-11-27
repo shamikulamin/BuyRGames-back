@@ -47,4 +47,15 @@ public class GameController {
 		return fullList;
 
 	}
+	
+	@GetMapping("/release/{releaseyear}")
+	public List<Game> getGameByYear(@PathVariable String releaseyear){
+		return gs.getGameByYear(releaseyear);
+	}
+	
+	@GetMapping("/search/{param}")
+	public List<Game> getSearchResults(@PathVariable String param){
+		
+		return gs.getSearchResults(param);
+	}
 }

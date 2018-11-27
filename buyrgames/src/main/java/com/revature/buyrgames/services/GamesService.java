@@ -21,4 +21,11 @@ public class GamesService {
 	public List<Game> findRandomByPlatform(String platform){
 		return gameRepo.findRandomByPlatform(platform);
 	}
+	
+	public List<Game> getGameByYear(String releaseyear){
+		return gameRepo.getGameByReleaseyear(releaseyear);
+	}
+	public List<Game> getSearchResults(String query){
+		return gameRepo.getSearchResults("%"+query+"%");
+	}
 }

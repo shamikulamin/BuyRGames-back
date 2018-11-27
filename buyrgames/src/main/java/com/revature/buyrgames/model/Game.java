@@ -17,16 +17,17 @@ public class Game {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "product_id")
+	
 	private int id;
 	private String name;
 	private String platform;
-	private int release_year;
+	private String releaseyear;
 	private String genre;
 	private String publisher;
 	private String developer;
 	private int critic_score;
-	private double user_rating_average;
-	private double price;
+	private float user_rating_average;
+	private float price;
 	private String product_image_url;
 	private String esrb_rating;
 
@@ -35,13 +36,13 @@ public class Game {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Game(int id, String name, String platform, int release_year, String genre, String publisher, String developer,
-			int critic_score, double user_rating_average, double price, String product_image_url, String esrb_rating) {
+	public Game(int id, String name, String platform, String releaseyear, String genre, String publisher, String developer,
+			int critic_score, float user_rating_average, float price, String product_image_url, String esrb_rating) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.platform = platform;
-		this.release_year = release_year;
+		this.releaseyear = releaseyear;
 		this.genre = genre;
 		this.publisher = publisher;
 		this.developer = developer;
@@ -76,12 +77,12 @@ public class Game {
 		this.platform = platform;
 	}
 
-	public int getRelease_year() {
-		return release_year;
+	public String getreleaseyear() {
+		return releaseyear;
 	}
 
-	public void setRelease_year(int release_year) {
-		this.release_year = release_year;
+	public void setreleaseyear(String releaseyear) {
+		this.releaseyear = releaseyear;
 	}
 
 	public String getGenre() {
@@ -116,19 +117,19 @@ public class Game {
 		this.critic_score = critic_score;
 	}
 
-	public double getUser_rating_average() {
+	public float getUser_rating_average() {
 		return user_rating_average;
 	}
 
-	public void setUser_rating_average(double user_rating_average) {
+	public void setUser_rating_average(float user_rating_average) {
 		this.user_rating_average = user_rating_average;
 	}
 
-	public double getPrice() {
+	public float getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
 
@@ -150,7 +151,7 @@ public class Game {
 
 	@Override
 	public String toString() {
-		return "Game [id=" + id + ", platform=" + platform + ", release_year=" + release_year + ", genre=" + genre
+		return "Game [id=" + id + ", platform=" + platform + ", releaseyear=" + releaseyear + ", genre=" + genre
 				+ ", publisher=" + publisher + ", developer=" + developer + ", critic_score=" + critic_score
 				+ ", user_rating_average=" + user_rating_average + ", price=" + price + ", product_image_url="
 				+ product_image_url + ", esrb_rating=" + esrb_rating + "]";
@@ -165,15 +166,13 @@ public class Game {
 		result = prime * result + ((esrb_rating == null) ? 0 : esrb_rating.hashCode());
 		result = prime * result + ((genre == null) ? 0 : genre.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((platform == null) ? 0 : platform.hashCode());
-		long temp;
-		temp = Double.doubleToLongBits(price);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + Float.floatToIntBits(price);
 		result = prime * result + ((product_image_url == null) ? 0 : product_image_url.hashCode());
 		result = prime * result + ((publisher == null) ? 0 : publisher.hashCode());
-		result = prime * result + release_year;
-		temp = Double.doubleToLongBits(user_rating_average);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((releaseyear == null) ? 0 : releaseyear.hashCode());
+		result = prime * result + Float.floatToIntBits(user_rating_average);
 		return result;
 	}
 
@@ -205,12 +204,17 @@ public class Game {
 			return false;
 		if (id != other.id)
 			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
 		if (platform == null) {
 			if (other.platform != null)
 				return false;
 		} else if (!platform.equals(other.platform))
 			return false;
-		if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price))
+		if (Float.floatToIntBits(price) != Float.floatToIntBits(other.price))
 			return false;
 		if (product_image_url == null) {
 			if (other.product_image_url != null)
@@ -222,11 +226,16 @@ public class Game {
 				return false;
 		} else if (!publisher.equals(other.publisher))
 			return false;
-		if (release_year != other.release_year)
+		if (releaseyear == null) {
+			if (other.releaseyear != null)
+				return false;
+		} else if (!releaseyear.equals(other.releaseyear))
 			return false;
-		if (Double.doubleToLongBits(user_rating_average) != Double.doubleToLongBits(other.user_rating_average))
+		if (Float.floatToIntBits(user_rating_average) != Float.floatToIntBits(other.user_rating_average))
 			return false;
 		return true;
 	}
+
+	
 
 }
