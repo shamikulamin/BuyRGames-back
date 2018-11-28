@@ -16,6 +16,6 @@ public interface GamesRepo extends JpaRepository<Game, Integer> {
 	
 	List<Game> getGameByReleaseyear(String releaseyear);
 	
-	@Query("FROM Game WHERE name LIKE :query OR genre LIKE :query OR platform LIKE :query")
+	@Query("FROM Game WHERE lower(name) LIKE lower(:query) OR genre LIKE lower(:query) OR platform LIKE lower(:query)")
 	List<Game> getSearchResults(String query);
 }
