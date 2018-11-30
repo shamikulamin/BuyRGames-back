@@ -1,10 +1,17 @@
 package com.revature.buyrgames.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -17,7 +24,6 @@ public class Game {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "product_id")
-	
 	private int id;
 	private String name;
 	private String platform;
@@ -30,6 +36,7 @@ public class Game {
 	private float price;
 	private String product_image_url;
 	private String esrb_rating;
+	
 
 	public Game() {
 		super();
@@ -52,6 +59,17 @@ public class Game {
 		this.product_image_url = product_image_url;
 		this.esrb_rating = esrb_rating;
 	}
+
+	public String getReleaseyear() {
+		return releaseyear;
+	}
+
+	public void setReleaseyear(String releaseyear) {
+		this.releaseyear = releaseyear;
+	}
+
+
+
 
 	public String getName() {
 		return name;
@@ -77,13 +95,6 @@ public class Game {
 		this.platform = platform;
 	}
 
-	public String getreleaseyear() {
-		return releaseyear;
-	}
-
-	public void setreleaseyear(String releaseyear) {
-		this.releaseyear = releaseyear;
-	}
 
 	public String getGenre() {
 		return genre;

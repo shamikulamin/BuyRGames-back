@@ -13,6 +13,10 @@ public class UsersService {
 	
 	public int save(AppUser u) {
 		usersRepo.save(u);
-		return u.getUserId();
+		return u.getUser_id();
+	}
+	
+	public String username (int id) {
+		return usersRepo.username(id);
 	}
 }

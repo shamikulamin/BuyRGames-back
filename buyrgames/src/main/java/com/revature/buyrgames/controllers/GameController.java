@@ -38,7 +38,7 @@ public class GameController {
 	public List<Game> findRandomByPlatform(@PathVariable String platform) {
 		List<Game> fullList = gs.findRandomByPlatform(platform);
 
-		Collections.shuffle(fullList);
+		
 		
 		for (int i = fullList.size() - 1; i >2; i--) {
             fullList.remove(i);
@@ -57,5 +57,17 @@ public class GameController {
 	public List<Game> getSearchResults(@PathVariable String param){
 		
 		return gs.getSearchResults(param);
+	}
+	
+	@GetMapping("/searchRelated/{param}")
+	public List<Game> getTopFive(@PathVariable String param){
+		List<Game> results = gs.getTopFive(param);
+		Collections.shuffle(results);
+		for (int i = results.size() - 1; i >4; i--) {
+            results.remove(i);
+        }
+		
+		return results;
+		
 	}
 }
