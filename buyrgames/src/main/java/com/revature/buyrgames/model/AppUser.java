@@ -11,11 +11,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "users_table")
+@Table(name = "usersTable")
 public class AppUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int user_id;
+	private int userId;
 	private String username;
 	private String password;
 	private String email;
@@ -27,14 +27,17 @@ public class AppUser {
 	private String state;
 	private String country;
 	private int rewardPoints;
+
+
 	public AppUser() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public AppUser(int user_id, String username, String password, String email, String firstname, String lastname,
+
+	public AppUser(int userId, String username, String password, String email, String firstname, String lastname,
 			String address, String zip, String city, String state, String country, int rewardPoints) {
 		super();
-		this.user_id = user_id;
+		this.userId = userId;
 		this.username = username;
 		this.password = password;
 		this.email = email;
@@ -47,78 +50,103 @@ public class AppUser {
 		this.country = country;
 		this.rewardPoints = rewardPoints;
 	}
-	public int getUser_id() {
-		return user_id;
+
+	public int getUserId() {
+		return userId;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
+
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getFirstname() {
 		return firstname;
 	}
+
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
+
 	public String getLastname() {
 		return lastname;
 	}
+
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public String getZip() {
 		return zip;
 	}
+
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
+
 	public String getCity() {
 		return city;
 	}
+
 	public void setCity(String city) {
 		this.city = city;
 	}
+
 	public String getState() {
 		return state;
 	}
+
 	public void setState(String state) {
 		this.state = state;
 	}
+
 	public String getCountry() {
 		return country;
 	}
+
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
 	public int getRewardPoints() {
 		return rewardPoints;
 	}
+
 	public void setRewardPoints(int rewardPoints) {
 		this.rewardPoints = rewardPoints;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -132,11 +160,12 @@ public class AppUser {
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + rewardPoints;
 		result = prime * result + ((state == null) ? 0 : state.hashCode());
-		result = prime * result + user_id;
+		result = prime * result + userId;
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		result = prime * result + ((zip == null) ? 0 : zip.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -188,7 +217,7 @@ public class AppUser {
 				return false;
 		} else if (!state.equals(other.state))
 			return false;
-		if (user_id != other.user_id)
+		if (userId != other.userId)
 			return false;
 		if (username == null) {
 			if (other.username != null)
@@ -202,9 +231,10 @@ public class AppUser {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
-		return "AppUser [user_id=" + user_id + ", username=" + username + ", password=" + password + ", email=" + email
+		return "AppUser [userId=" + userId + ", username=" + username + ", password=" + password + ", email=" + email
 				+ ", firstname=" + firstname + ", lastname=" + lastname + ", address=" + address + ", zip=" + zip
 				+ ", city=" + city + ", state=" + state + ", country=" + country + ", rewardPoints=" + rewardPoints
 				+ "]";
