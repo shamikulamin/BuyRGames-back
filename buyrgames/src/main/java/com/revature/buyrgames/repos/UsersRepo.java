@@ -7,5 +7,5 @@ import com.revature.buyrgames.model.AppUser;
 
 @Repository
 public interface UsersRepo extends JpaRepository<AppUser, Integer>{
-	
+	AppUser findByUsernameAndPassword(String username, String password);
 }

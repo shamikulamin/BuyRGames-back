@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "users_table")
+@Table(name = "usersTable")
 public class AppUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,97 +24,26 @@ public class AppUser {
 	private String country;
 	private int rewardPoints;
 
-	@Override
-	public String toString() {
-		return "AppUser [userId=" + userId + ", username=" + username + ", password=" + password + ", email=" + email
-				+ ", firstname=" + firstname + ", lastname=" + lastname + ", address=" + address + ", zip=" + zip
-				+ ", city=" + city + ", state=" + state + ", country=" + country + ", rewardPoints=" + rewardPoints
-				+ "]";
+	public AppUser() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		result = prime * result + ((city == null) ? 0 : city.hashCode());
-		result = prime * result + ((country == null) ? 0 : country.hashCode());
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((firstname == null) ? 0 : firstname.hashCode());
-		result = prime * result + ((lastname == null) ? 0 : lastname.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + rewardPoints;
-		result = prime * result + ((state == null) ? 0 : state.hashCode());
-		result = prime * result + userId;
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
-		result = prime * result + ((zip == null) ? 0 : zip.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		AppUser other = (AppUser) obj;
-		if (address == null) {
-			if (other.address != null)
-				return false;
-		} else if (!address.equals(other.address))
-			return false;
-		if (city == null) {
-			if (other.city != null)
-				return false;
-		} else if (!city.equals(other.city))
-			return false;
-		if (country == null) {
-			if (other.country != null)
-				return false;
-		} else if (!country.equals(other.country))
-			return false;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (firstname == null) {
-			if (other.firstname != null)
-				return false;
-		} else if (!firstname.equals(other.firstname))
-			return false;
-		if (lastname == null) {
-			if (other.lastname != null)
-				return false;
-		} else if (!lastname.equals(other.lastname))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (rewardPoints != other.rewardPoints)
-			return false;
-		if (state == null) {
-			if (other.state != null)
-				return false;
-		} else if (!state.equals(other.state))
-			return false;
-		if (userId != other.userId)
-			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
-			return false;
-		if (zip == null) {
-			if (other.zip != null)
-				return false;
-		} else if (!zip.equals(other.zip))
-			return false;
-		return true;
+	public AppUser(int userId, String username, String password, String email, String firstname, String lastname,
+			String address, String zip, String city, String state, String country, int rewardPoints) {
+		super();
+		this.userId = userId;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.address = address;
+		this.zip = zip;
+		this.city = city;
+		this.state = state;
+		this.country = country;
+		this.rewardPoints = rewardPoints;
 	}
 
 	public int getUserId() {
@@ -213,26 +142,97 @@ public class AppUser {
 		this.rewardPoints = rewardPoints;
 	}
 
-	public AppUser(int userId, String username, String password, String email, String firstname, String lastname,
-			String address, String zip, String city, String state, String country, int rewardPoints) {
-		super();
-		this.userId = userId;
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.address = address;
-		this.zip = zip;
-		this.city = city;
-		this.state = state;
-		this.country = country;
-		this.rewardPoints = rewardPoints;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((city == null) ? 0 : city.hashCode());
+		result = prime * result + ((country == null) ? 0 : country.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((firstname == null) ? 0 : firstname.hashCode());
+		result = prime * result + ((lastname == null) ? 0 : lastname.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + rewardPoints;
+		result = prime * result + ((state == null) ? 0 : state.hashCode());
+		result = prime * result + userId;
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		result = prime * result + ((zip == null) ? 0 : zip.hashCode());
+		return result;
 	}
 
-	public AppUser() {
-		super();
-		// TODO Auto-generated constructor stub
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AppUser other = (AppUser) obj;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (city == null) {
+			if (other.city != null)
+				return false;
+		} else if (!city.equals(other.city))
+			return false;
+		if (country == null) {
+			if (other.country != null)
+				return false;
+		} else if (!country.equals(other.country))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (firstname == null) {
+			if (other.firstname != null)
+				return false;
+		} else if (!firstname.equals(other.firstname))
+			return false;
+		if (lastname == null) {
+			if (other.lastname != null)
+				return false;
+		} else if (!lastname.equals(other.lastname))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (rewardPoints != other.rewardPoints)
+			return false;
+		if (state == null) {
+			if (other.state != null)
+				return false;
+		} else if (!state.equals(other.state))
+			return false;
+		if (userId != other.userId)
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		if (zip == null) {
+			if (other.zip != null)
+				return false;
+		} else if (!zip.equals(other.zip))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "AppUser [userId=" + userId + ", username=" + username + ", password=" + password + ", email=" + email
+				+ ", firstname=" + firstname + ", lastname=" + lastname + ", address=" + address + ", zip=" + zip
+				+ ", city=" + city + ", state=" + state + ", country=" + country + ", rewardPoints=" + rewardPoints
+				+ "]";
 	}
 
 }
