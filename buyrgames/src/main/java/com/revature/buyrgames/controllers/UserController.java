@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.buyrgames.model.AppUser;
 import com.revature.buyrgames.services.UsersService;
 import com.revature.dto.Credential;
-import com.revature.model.Champion;
 
 @RestController
 @RequestMapping("users")
