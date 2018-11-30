@@ -1,9 +1,13 @@
 package com.revature.buyrgames.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,6 +27,7 @@ public class AppUser {
 	private String state;
 	private String country;
 	private int rewardPoints;
+
 
 	public AppUser() {
 		super();
@@ -234,5 +239,7 @@ public class AppUser {
 				+ ", city=" + city + ", state=" + state + ", country=" + country + ", rewardPoints=" + rewardPoints
 				+ "]";
 	}
+	
+	
 
 }

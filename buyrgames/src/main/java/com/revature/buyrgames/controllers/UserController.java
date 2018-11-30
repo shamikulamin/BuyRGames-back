@@ -2,6 +2,8 @@ package com.revature.buyrgames.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,5 +37,10 @@ public class UserController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public int save(@RequestBody AppUser appUser) {
 		return usersService.save(appUser);
+	}
+	
+	@GetMapping("{id}")
+	public String username (@PathVariable int id) {
+		return usersService.username(id);
 	}
 }

@@ -28,4 +28,7 @@ public class GamesService {
 	public List<Game> getSearchResults(String query){
 		return gameRepo.getSearchResults("%"+query+"%");
 	}
+	public List<Game> getTopFive(String query){
+		return gameRepo.getTopFive("%"+query+"%");
+	}
 }

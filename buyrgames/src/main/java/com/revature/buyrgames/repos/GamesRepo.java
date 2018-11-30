@@ -18,4 +18,7 @@ public interface GamesRepo extends JpaRepository<Game, Integer> {
 	
 	@Query("FROM Game WHERE lower(name) LIKE lower(:query) OR genre LIKE lower(:query) OR platform LIKE lower(:query)")
 	List<Game> getSearchResults(String query);
+	
+	@Query("FROM Game WHERE lower(name) LIKE lower(:query) OR genre LIKE lower(:query) OR platform LIKE lower(:query)")
+	List<Game> getTopFive(String query);
 }

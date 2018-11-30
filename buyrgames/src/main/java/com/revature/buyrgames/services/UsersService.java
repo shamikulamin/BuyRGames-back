@@ -24,6 +24,10 @@ public class UsersService {
 		return u.getUserId();
 	}
 	
+	public String username (int id) {
+		return usersRepo.username(id);
+	}
+	
 	public static HttpSession session() {
 	    ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 	    return attr.getRequest().getSession(true); // true == allow create
