@@ -2,9 +2,12 @@ package com.revature.buyrgames.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -18,7 +21,6 @@ public class Review {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "review_id")
 	private int reviewId;
-	@Column(name = "user_id")
 	private int userId;
 	@Column(name = "product_id")
 	private int productId;
@@ -26,49 +28,54 @@ public class Review {
 	private int userRating;
 	private String review;
 	
+	@OneToOne
+	@JoinColumn(name = "userId", insertable = false, updatable = false)
+	private AppUser user;
+
 	public Review() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Review(int reviewId, int userId, int productId, int userRating, String review) {
+	public Review(int reviewId, int userId, int productId, int userRating, String review, AppUser user) {
 		super();
 		this.reviewId = reviewId;
 		this.userId = userId;
 		this.productId = productId;
 		this.userRating = userRating;
 		this.review = review;
+		this.user = user;
 	}
 
-	public int getreviewId() {
+	public int getReviewId() {
 		return reviewId;
 	}
 
-	public void setreviewId(int reviewId) {
+	public void setReviewId(int reviewId) {
 		this.reviewId = reviewId;
 	}
 
-	public int getuserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setuserId(int userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
-	public int getproductId() {
+	public int getProductId() {
 		return productId;
 	}
 
-	public void setproductId(int productId) {
+	public void setProductId(int productId) {
 		this.productId = productId;
 	}
 
-	public int getuserRating() {
+	public int getUserRating() {
 		return userRating;
 	}
 
-	public void setuserRating(int userRating) {
+	public void setUserRating(int userRating) {
 		this.userRating = userRating;
 	}
 
@@ -80,6 +87,20 @@ public class Review {
 		this.review = review;
 	}
 
+	public AppUser getUser() {
+		return user;
+	}
+
+	public void setUser(AppUser user) {
+		this.user = user;
+	}
+
+	@Override
+	public String toString() {
+		return "Review [reviewId=" + reviewId + ", userId=" + userId + ", productId=" + productId + ", userRating="
+				+ userRating + ", review=" + review + ", user=" + user + "]";
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -87,6 +108,7 @@ public class Review {
 		result = prime * result + productId;
 		result = prime * result + ((review == null) ? 0 : review.hashCode());
 		result = prime * result + reviewId;
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		result = prime * result + userId;
 		result = prime * result + userRating;
 		return result;
@@ -110,17 +132,16 @@ public class Review {
 			return false;
 		if (reviewId != other.reviewId)
 			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
 		if (userId != other.userId)
 			return false;
 		if (userRating != other.userRating)
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Review [reviewId=" + reviewId + ", userId=" + userId + ", productId=" + productId
-				+ ", userRating=" + userRating + ", review=" + review + "]";
 	}
 	
 	

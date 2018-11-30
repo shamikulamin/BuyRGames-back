@@ -31,4 +31,8 @@ public class GamesService {
 	public List<Game> getTopFive(String query){
 		return gameRepo.getTopFive("%"+query+"%");
 	}
+	
+	public Game findByProductId(int id) {
+		return gameRepo.findById(id);
+	}
 }
