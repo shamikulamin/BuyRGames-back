@@ -3,7 +3,6 @@ package com.revature.buyrgames.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -37,6 +36,9 @@ public class Game {
 	private String product_image_url;
 	private String esrb_rating;
 	
+	@OneToMany
+	@JoinColumn(name = "product_id")
+	private List<Review> review = new ArrayList<>();
 
 	public Game() {
 		super();
@@ -44,7 +46,7 @@ public class Game {
 	}
 
 	public Game(int id, String name, String platform, String releaseyear, String genre, String publisher, String developer,
-			int critic_score, float user_rating_average, float price, String product_image_url, String esrb_rating) {
+			int critic_score, float user_rating_average, float price, String product_image_url, String esrb_rating, List<Review> review) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -58,6 +60,7 @@ public class Game {
 		this.price = price;
 		this.product_image_url = product_image_url;
 		this.esrb_rating = esrb_rating;
+		this.review = review;
 	}
 
 	public String getReleaseyear() {
@@ -70,6 +73,13 @@ public class Game {
 
 
 
+	public List<Review> getReview() {
+		return review;
+	}
+
+	public void setReview(List<Review> review) {
+		this.review = review;
+	}
 
 	public String getName() {
 		return name;

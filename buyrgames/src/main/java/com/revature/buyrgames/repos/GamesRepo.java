@@ -10,6 +10,7 @@ import com.revature.buyrgames.model.Game;
 
 @Repository
 public interface GamesRepo extends JpaRepository<Game, Integer> {
+
 	Game findById(int id);
 	
 	List<Game> findByGenre(String genre);

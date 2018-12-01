@@ -75,4 +75,8 @@ public class GameController {
 		return results;
 		
 	}
+	@GetMapping("/review/{id}")
+	public Game findByProductId(@PathVariable int id) {
+		return gs.findByProductId(id);
+	}
 }

@@ -2,19 +2,25 @@ package com.revature.buyrgames.model;
 
 import java.util.Arrays;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 @Entity
-@Table(name = "usersTable")
+@Table(name = "users_table")
 public class AppUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id")
 	private int userId;
 	private String username;
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private String password;
 	private String email;
 	private String firstname;
@@ -24,7 +30,7 @@ public class AppUser {
 	private String city;
 	private String state;
 	private String country;
-	private Integer rewardPoints;
+	private int rewardPoints;
 	private Integer recentlyViewed1;
 	private Integer recentlyViewed2;
 	private Integer recentlyViewed3;
@@ -35,7 +41,6 @@ public class AppUser {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 	public AppUser(int userId, String username, String password, String email, String firstname, String lastname,
 			String address, String zip, String city, String state, String country, Integer rewardPoints,
 			Integer recentlyViewed1, Integer recentlyViewed2, Integer recentlyViewed3, Integer recentlyViewed4,
@@ -59,100 +64,77 @@ public class AppUser {
 		this.recentlyViewed4 = recentlyViewed4;
 		this.recentlyViewed5 = recentlyViewed5;
 	}
-
 	public int getUserId() {
 		return userId;
 	}
-
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-
 	public String getUsername() {
 		return username;
 	}
-
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 	public String getFirstname() {
 		return firstname;
 	}
-
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
-
 	public String getLastname() {
 		return lastname;
 	}
-
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-
 	public String getAddress() {
 		return address;
 	}
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
 	public String getZip() {
 		return zip;
 	}
-
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
-
 	public String getCity() {
 		return city;
 	}
-
 	public void setCity(String city) {
 		this.city = city;
 	}
-
 	public String getState() {
 		return state;
 	}
-
 	public void setState(String state) {
 		this.state = state;
 	}
-
 	public String getCountry() {
 		return country;
 	}
-
 	public void setCountry(String country) {
 		this.country = country;
 	}
-
-	public Integer getRewardPoints() {
+	
+	public int getRewardPoints() {
 		return rewardPoints;
 	}
-
-	public void setRewardPoints(Integer rewardPoints) {
+	public void setRewardPoints(int rewardPoints) {
 		this.rewardPoints = rewardPoints;
 	}
 
@@ -212,14 +194,13 @@ public class AppUser {
 		result = prime * result + ((recentlyViewed3 == null) ? 0 : recentlyViewed3.hashCode());
 		result = prime * result + ((recentlyViewed4 == null) ? 0 : recentlyViewed4.hashCode());
 		result = prime * result + ((recentlyViewed5 == null) ? 0 : recentlyViewed5.hashCode());
-		result = prime * result + ((rewardPoints == null) ? 0 : rewardPoints.hashCode());
+		result = prime * result + rewardPoints;
 		result = prime * result + ((state == null) ? 0 : state.hashCode());
 		result = prime * result + userId;
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		result = prime * result + ((zip == null) ? 0 : zip.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -289,11 +270,9 @@ public class AppUser {
 				return false;
 		} else if (!recentlyViewed5.equals(other.recentlyViewed5))
 			return false;
-		if (rewardPoints == null) {
-			if (other.rewardPoints != null)
-				return false;
-		} else if (!rewardPoints.equals(other.rewardPoints))
+		if (rewardPoints != other.rewardPoints) {
 			return false;
+		} 
 		if (state == null) {
 			if (other.state != null)
 				return false;
@@ -313,7 +292,6 @@ public class AppUser {
 			return false;
 		return true;
 	}
-
 	@Override
 	public String toString() {
 		return "AppUser [userId=" + userId + ", username=" + username + ", password=" + password + ", email=" + email
@@ -324,4 +302,6 @@ public class AppUser {
 				+ "]";
 	}
 
+
+	
 }
