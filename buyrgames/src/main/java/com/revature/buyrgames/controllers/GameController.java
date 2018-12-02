@@ -37,9 +37,8 @@ public class GameController {
 	@GetMapping("/platform/{platform}")
 	public List<Game> findRandomByPlatform(@PathVariable String platform) {
 		List<Game> fullList = gs.findRandomByPlatform(platform);
+		Collections.shuffle(fullList);
 
-		
-		
 		for (int i = fullList.size() - 1; i >2; i--) {
             fullList.remove(i);
         }
