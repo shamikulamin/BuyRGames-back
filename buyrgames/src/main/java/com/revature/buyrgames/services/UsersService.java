@@ -1,5 +1,7 @@
 package com.revature.buyrgames.services;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +26,36 @@ public class UsersService {
 		return u.getUserId();
 	}
 	
+	public AppUser updateRecent(AppUser u) {
+		AppUser tempAppUser = usersRepo.findById(u.getUserId()).get();
+		tempAppUser.setRecentlyViewed1(u.getRecentlyViewed1());
+		tempAppUser.setRecentlyViewed2(u.getRecentlyViewed2());
+		tempAppUser.setRecentlyViewed3(u.getRecentlyViewed3());
+		tempAppUser.setRecentlyViewed4(u.getRecentlyViewed4());
+		tempAppUser.setRecentlyViewed5(u.getRecentlyViewed5());
+		usersRepo.save(tempAppUser);
+		return tempAppUser;
+	}
+	
+	public AppUser updateAddress(AppUser u) {
+		AppUser tempAppUser = usersRepo.findById(u.getUserId()).get();
+		tempAppUser.setFirstname(u.getFirstname());
+		tempAppUser.setLastname(u.getLastname());
+		tempAppUser.setAddress(u.getAddress());
+		tempAppUser.setZip(u.getZip());
+		tempAppUser.setCity(u.getCity());
+		tempAppUser.setState(u.getState());
+		tempAppUser.setCountry(u.getCountry());
+		usersRepo.save(tempAppUser);
+		return tempAppUser;
+	}
+	
 	public String username (int id) {
 		return usersRepo.username(id);
+	}
+	
+	public List<Integer[]> recentlyViewed(int id) {
+		return usersRepo.recentlyViewed(id);
 	}
 	
 	public static HttpSession session() {

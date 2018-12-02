@@ -28,6 +28,11 @@ public class GameController {
 		super();
 		this.gs = gs;
 	}
+	
+	@GetMapping("{id}")
+	public Game findById(@PathVariable int id) {
+		return gs.findById(id);
+	}
 
 	@GetMapping("/genre/{genre}")
 	public List<Game> findByGenre(@PathVariable String genre) {

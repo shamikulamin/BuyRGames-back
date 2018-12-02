@@ -14,6 +14,10 @@ public class GamesService {
 	@Autowired
 	private GamesRepo gameRepo;
 	
+	public Game findById(int id) {
+		return gameRepo.findById(id);
+	}
+	
 	public List<Game> findByGenre(String genre) {
 		return gameRepo.findByGenre(genre);
 	}
