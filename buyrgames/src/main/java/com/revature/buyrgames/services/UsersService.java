@@ -18,10 +18,15 @@ public class UsersService {
 	private UsersRepo usersRepo;
 	
 	public AppUser findByUsernameAndPassword(String username, String password) {
-		return usersRepo.findByUsernameAndPassword(username, password);
+		AppUser user = usersRepo.findByUsernameAndPassword(username, password);
+		if (user != null) {
+			session().setAttribute("id", user.getUserId());
+		}
+		return user;
 	}
 	
 	public int save(AppUser u) {
+		HttpSession session = session();
 		usersRepo.save(u);
 		return u.getUserId();
 	}
@@ -46,6 +51,19 @@ public class UsersService {
 		tempAppUser.setCity(u.getCity());
 		tempAppUser.setState(u.getState());
 		tempAppUser.setCountry(u.getCountry());
+		usersRepo.save(tempAppUser);
+		return tempAppUser;
+	}
+	
+	public AppUser updateProfile(AppUser u) {
+		AppUser tempAppUser = usersRepo.findById(u.getUserId()).get();
+		if (u.getUsername() != null) {
+			tempAppUser.setUsername(u.getUsername());
+		} else if (u.getPassword() != null) {
+			tempAppUser.setPassword(u.getPassword());
+		} else if (u.getEmail() != null) {
+			tempAppUser.setEmail(u.getEmail());
+		}
 		usersRepo.save(tempAppUser);
 		return tempAppUser;
 	}
