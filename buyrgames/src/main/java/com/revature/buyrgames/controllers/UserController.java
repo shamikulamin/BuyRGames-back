@@ -6,6 +6,7 @@ import org.apache.catalina.authenticator.SavedRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import com.revature.buyrgames.model.AppUser;
 import com.revature.buyrgames.services.UsersService;
 import com.revature.dto.Credential;
 
+@CrossOrigin(origins = "http://buyrgames.s3-website.us-east-2.amazonaws.com")
 @RestController
 @RequestMapping("users")
 public class UserController {
@@ -38,28 +40,33 @@ public class UserController {
 	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
+	@CrossOrigin(origins = "http://buyrgames.s3-website.us-east-2.amazonaws.com")
 	public int save(@RequestBody AppUser appUser) {
 		return usersService.save(appUser);
 	}
 	
 	@PostMapping("update/recent")
+	@CrossOrigin(origins = "http://buyrgames.s3-website.us-east-2.amazonaws.com")
 	public AppUser updateRecent(@RequestBody AppUser appUser) {
 		System.out.println(appUser);
 		return usersService.updateRecent(appUser);
 	}
 	
 	@PostMapping("update/address")
+	@CrossOrigin(origins = "http://buyrgames.s3-website.us-east-2.amazonaws.com")
 	public AppUser updateAddress(@RequestBody AppUser appUser) {
 		System.out.println(appUser);
 		return usersService.updateAddress(appUser);
 	}
 	
 	@GetMapping("{id}")
+	@CrossOrigin(origins = "http://buyrgames.s3-website.us-east-2.amazonaws.com")
 	public String username (@PathVariable int id) {
 		return usersService.username(id);
 	}
 	
 	@GetMapping("recent/{id}")
+	@CrossOrigin(origins = "http://buyrgames.s3-website.us-east-2.amazonaws.com")
 	public List<Integer[]> recentlyViewed(@PathVariable int id) {
 		return usersService.recentlyViewed(id);
 	}

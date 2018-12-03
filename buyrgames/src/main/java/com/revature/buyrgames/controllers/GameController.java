@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.buyrgames.model.Game;
 import com.revature.buyrgames.services.GamesService;
 
+@CrossOrigin(origins = "http://buyrgames.s3-website.us-east-2.amazonaws.com")
 @RestController
 @RequestMapping("games")
 public class GameController {
@@ -30,16 +32,19 @@ public class GameController {
 	}
 	
 	@GetMapping("{id}")
+	@CrossOrigin(origins = "http://buyrgames.s3-website.us-east-2.amazonaws.com")
 	public Game findById(@PathVariable int id) {
 		return gs.findById(id);
 	}
 
 	@GetMapping("/genre/{genre}")
+	@CrossOrigin(origins = "http://buyrgames.s3-website.us-east-2.amazonaws.com")
 	public List<Game> findByGenre(@PathVariable String genre) {
 		return gs.findByGenre(genre);
 	}
 
 	@GetMapping("/platform/{platform}")
+	@CrossOrigin(origins = "http://buyrgames.s3-website.us-east-2.amazonaws.com")
 	public List<Game> findRandomByPlatform(@PathVariable String platform) {
 		List<Game> fullList = gs.findRandomByPlatform(platform);
 		Collections.shuffle(fullList);
@@ -53,17 +58,20 @@ public class GameController {
 	}
 	
 	@GetMapping("/release/{releaseyear}")
+	@CrossOrigin(origins = "http://buyrgames.s3-website.us-east-2.amazonaws.com")
 	public List<Game> getGameByYear(@PathVariable String releaseyear){
 		return gs.getGameByYear(releaseyear);
 	}
 	
 	@GetMapping("/search/{param}")
+	@CrossOrigin(origins = "http://buyrgames.s3-website.us-east-2.amazonaws.com")
 	public List<Game> getSearchResults(@PathVariable String param){
 		
 		return gs.getSearchResults(param);
 	}
 	
 	@GetMapping("/searchRelated/{param}")
+	@CrossOrigin(origins = "http://buyrgames.s3-website.us-east-2.amazonaws.com")
 	public List<Game> getTopFive(@PathVariable String param){
 		List<Game> results = gs.getTopFive(param);
 		Collections.shuffle(results);

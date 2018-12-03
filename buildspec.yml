@@ -1,0 +1,10 @@
+version: 0.2
+
+phases:
+  post_build:
+    commands:
+      - cd buyrgames && mvn clean package
+artifacts:
+  files:
+    - '**/*'
+  base-directory: 'buyrgames/target/buyrgames-0.0.1-SNAPSHOT'
