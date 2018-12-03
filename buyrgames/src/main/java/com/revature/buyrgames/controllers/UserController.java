@@ -27,6 +27,7 @@ public class UserController {
 	private UsersService usersService;
 	
 	@PostMapping("login")
+	@CrossOrigin(origins = "http://buyrgames.s3-website.us-east-2.amazonaws.com")
 	public ResponseEntity<AppUser> findByUsernameAndPassword(@RequestBody Credential credential) {
 		
 		AppUser user = usersService.findByUsernameAndPassword(credential.getUsername(), credential.getPassword());
