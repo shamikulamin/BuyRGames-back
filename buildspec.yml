@@ -3,7 +3,7 @@ version: 0.2
 phases:
   post_build:
     commands:
-      - cd buyrgames && mvn clean package
+      - cd buyrgames && mvnw clean package
 artifacts:
   files:
     - '**/*'
